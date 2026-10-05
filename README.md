@@ -51,7 +51,7 @@ Il workflow [.github/workflows/pages.yml](.github/workflows/pages.yml) esegue i 
 
 La pagina su GitHub Pages ha `<link rel="canonical">` che punta a `pageUrl` (la pagina WordPress), quindi Google considera quella principale.
 
-Per un sottodominio (es. `colori.crearecreativita.it`): aggiungi un file `frontend/CNAME` con il nome, imposta il Custom domain in Settings → Pages e crea il record DNS `CNAME` → `crearecreativita.github.io`.
+Sottodominio: `colorconverter.crearecreativita.it` (file `frontend/CNAME`). Nel DNS serve il record `CNAME` `colorconverter` → `crearecreativita.github.io`; poi in Settings → Pages spunta *Enforce HTTPS*.
 
 ## Sviluppo locale
 

@@ -1,0 +1,26 @@
+[
+  {
+    "q": "Qual è la differenza tra RGB e CMYK?",
+    "a": "RGB è il modello dei colori a schermo: rosso, verde e blu sommano luce. CMYK è il modello della stampa: ciano, magenta, giallo e nero (K) sommano inchiostro. Per questo certi colori brillanti dello schermo, come i verdi e i blu elettrici, in stampa risultano più spenti."
+  },
+  {
+    "q": "Cos'è il codice HEX?",
+    "a": "È lo stesso colore RGB scritto in esadecimale: un cancelletto e sei caratteri, due per ogni canale. Per esempio #F92273 vuol dire rosso 249, verde 34, blu 115. È il formato che si usa nei CSS e nei siti web."
+  },
+  {
+    "q": "Il Pantone che vedo è quello ufficiale?",
+    "a": "No. Il convertitore cerca la tinta più vicina in una libreria di riferimento di circa quaranta colori, in versione Coated (carta patinata) e Uncoated (carta non patinata, calcolata come approssimazione). Serve a farsi un'idea e a scegliere da dove partire. Per un lavoro di stampa verifica sempre il colore sulla mazzetta Pantone."
+  },
+  {
+    "q": "La conversione in CMYK è precisa per la stampa?",
+    "a": "È un calcolo matematico dai valori RGB, senza profilo colore di stampa. Va bene per avere un riferimento, ma ogni tipografia, carta e inchiostro danno un risultato un po' diverso. Prima di una tiratura chiedi sempre una prova colore."
+  },
+  {
+    "q": "Come viene calcolato il colore complementare?",
+    "a": "Sottraggo a 255 ciascun canale RGB. Per esempio il complementare del rosso #FF0000 è il ciano #00FFFF. È il complementare del colore-luce, quello dello schermo: sulla ruota dei colori dei pittori il rosso ha invece il verde come opposto."
+  },
+  {
+    "q": "I colori che inserisco vengono salvati?",
+    "a": "No. Tutte le conversioni avvengono nel tuo browser: nessun colore viene caricato o salvato su un server."
+  }
+]

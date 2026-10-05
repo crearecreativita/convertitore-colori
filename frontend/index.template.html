@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Convertitore colori RGB, CMYK, HEX e Pantone | Creare Creatività</title>
+<meta name="description" content="Converti velocemente i colori nei profili HEX, RGB, CMYK e Pantone con il convertitore ideato per ogni designer.">
+<link rel="canonical" href="{{PAGE_URL}}">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Convertitore colori RGB, CMYK, HEX e Pantone | Creare Creatività">
+<meta property="og:description" content="Converti velocemente i colori nei profili HEX, RGB, CMYK e Pantone e scopri il colore complementare.">
+<meta property="og:url" content="{{PAGE_URL}}">
+<meta name="theme-color" content="#1b1a1c">
+<meta name="color-scheme" content="dark">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="stylesheet" href="ac-colori.css">
+<style>
+  @font-face { font-family: "Inter"; font-weight: 400 600; font-style: normal; font-display: swap; src: url("fonts/inter-latin.woff2") format("woff2"); }
+  @font-face { font-family: "Poppins"; font-weight: 700; font-style: normal; font-display: swap; src: url("fonts/poppins-700.woff2") format("woff2"); }
+  @font-face { font-family: "Poppins"; font-weight: 800; font-style: normal; font-display: swap; src: url("fonts/poppins-800.woff2") format("woff2"); }
+  :root { --ac-font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; color: #fff; background: #1b1a1c; font-family: var(--ac-font); line-height: 1.55; }
+  .pg-wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+  .pg-top { padding: 18px 0; border-bottom: 1px solid #3d3b41; }
+  .pg-top .pg-wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .pg-name { font-family: "Poppins", var(--ac-font); font-weight: 800; font-size: 19px; letter-spacing: -.2px; color: #fff; text-decoration: none; }
+  .pg-name span { color: #f92273; }
+  .pg-logo-m { display: none; }
+  .pg-hero { padding: 40px 0 24px; }
+  .pg-hero .pg-kicker { margin: 0 0 10px; font-family: "Poppins", var(--ac-font); font-weight: 700; font-size: 15px; letter-spacing: 1.5px; text-transform: uppercase; color: #f92273; }
+  .pg-hero h1 { margin: 0 0 12px; font-family: "Poppins", var(--ac-font); font-weight: 800; font-size: clamp(24px, 4.5vw, 36px); line-height: 1.2; }
+  .pg-hero p { margin: 0; max-width: 62ch; font-size: 17px; color: #b9b6c0; }
+  .pg-main { padding-bottom: 56px; }
+  .pg-more { margin-top: 48px; display: grid; gap: 14px; font-size: 16px; }
+  .pg-more h2 { margin: 0; font-family: "Poppins", var(--ac-font); font-weight: 700; font-size: 20px; }
+  .pg-more p { margin: 0; max-width: 66ch; color: #d6d4da; }
+  .pg-more a { color: #f92273; text-underline-offset: 3px; }
+  .pg-foot { padding: 24px 0 36px; border-top: 1px solid #3d3b41; font-size: 13px; color: #b9b6c0; text-align: center; }
+  .pg-foot p { margin: 0 0 6px; }
+  .pg-foot a { color: inherit; }
+  @media (max-width: 640px) { .pg-logo-d { display: none; } .pg-logo-m { display: block; } }
+  @media print { body { color: #000; background: #fff; } }
+</style>
+{{GA}}
+</head>
+<body>
+<header class="pg-top"><div class="pg-wrap">
+  <a class="pg-name" href="https://www.crearecreativita.it/">Convertitore<span>Colori</span></a>
+  <a href="https://www.crearecreativita.it/"><img class="pg-logo-d" src="img/logo-desktop.png" width="160" height="44" alt="Creare Creatività"><img class="pg-logo-m" src="img/logo-mobile.png" width="36" height="36" alt="Creare Creatività"></a>
+</div></header>
+
+<main class="pg-wrap pg-main">
+  <section class="pg-hero">
+    <p class="pg-kicker">Convertitore colori</p>
+    <h1>Visualizza la corrispondenza colore RGB, CMYK, HEX o Pantone e scopri il suo colore complementare.</h1>
+    <p>Inserisci un valore e converti all’istante, oppure scegli il colore con il color picker.</p>
+  </section>
+
+  <!--AC_BLOCK-->
+
+  <section class="pg-more">
+    <h2>Come funziona questo convertitore?</h2>
+    <p>Inserisci la tua tinta tra RGB, CMYK, HEX o Pantone e vedi subito le altre corrispondenze. Oppure usa il color picker per scegliere il colore che vuoi.</p>
+    <h2>Perché è comodo?</h2>
+    <p>Perché in una sola schermata trovi tutte le corrispondenze colore utili. La guida completa, con le domande frequenti, è nella pagina <a href="{{PAGE_URL}}">Convertitore colori</a> su crearecreativita.it.</p>
+  </section>
+</main>
+
+<footer class="pg-foot"><div class="pg-wrap">
+  <p>Tutte le conversioni avvengono localmente nel tuo browser: nessun colore viene caricato o salvato su un server.</p>
+  <p>© Creare Creatività di Alessandro Minotto, Padova ·
+  <a href="https://www.crearecreativita.it/privacy-policy/">Privacy</a> ·
+  <a href="https://www.crearecreativita.it/cookie-policy/">Cookie</a></p>
+</div></footer>
+
+<script src="ac-colori.js" defer></script>
+</body>
+</html>

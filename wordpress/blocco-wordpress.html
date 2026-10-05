@@ -1,0 +1,456 @@
+<!-- Convertitore colori — Creare Creatività. Incolla tutto in un widget "HTML" di Elementor (o in un blocco "HTML personalizzato"). -->
+<style>
+/* Convertitore colori — Creare Creatività
+   Tutti i selettori partono da .ac-colori: si può incollare in WordPress/Elementor senza conflitti col tema. */
+.ac-colori, .ac-colori *, .ac-colori *::before, .ac-colori *::after { box-sizing: border-box; }
+/* Tema scuro (predefinito): coerente con crearecreativita.it */
+.ac-colori {
+  --ac-ink: #ffffff;
+  --ac-muted: #b9b6c0;
+  --ac-line: #3d3b41;
+  --ac-bg: #222124;
+  --ac-field-bg: #1b1a1c;
+  --ac-field-border: #77747d;
+  --ac-soft: #2a292c;
+  --ac-brand: #f92273;
+  --ac-brand-fg: #ffffff;
+  --ac-tick: #7fc200;
+  --ac-radius: 14px;
+  display: block;
+  container-type: inline-size;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0;
+  color: var(--ac-ink);
+  background: transparent;
+  font-family: var(--ac-font, inherit);
+  font-size: 17px;
+  line-height: 1.55;
+  text-align: left;
+  color-scheme: dark;
+}
+.ac-colori[data-ac-theme="light"] {
+  --ac-ink: #1b1a1c;
+  --ac-muted: #5d5a63;
+  --ac-line: #d9d7dd;
+  --ac-bg: #ffffff;
+  --ac-field-bg: #ffffff;
+  --ac-field-border: #8a8791;
+  --ac-soft: #f4f3f6;
+  --ac-tick: #3f7d00;
+  color-scheme: light;
+}
+.ac-colori [hidden] { display: none !important; }
+.ac-colori p, .ac-colori ul, .ac-colori li { margin: 0; padding: 0; }
+.ac-colori ul { list-style: none; }
+.ac-colori .ac-card {
+  background: var(--ac-bg);
+  border: 1px solid var(--ac-line);
+  border-radius: 24px;
+  padding: clamp(20px, 4cqi, 40px);
+}
+.ac-colori .ac-grid { display: grid; grid-template-columns: 200px 1fr; gap: 32px; align-items: start; }
+.ac-colori .ac-side { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.ac-colori .ac-swatch {
+  width: 200px; height: 200px; border-radius: 16px;
+  background: #ffffff; border: 1px solid var(--ac-line);
+}
+.ac-colori .ac-fields { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.ac-colori .ac-label {
+  display: block; margin: 0 0 10px; padding: 0;
+  font-size: 12px; font-weight: 700; letter-spacing: .5px; line-height: 1.3;
+  text-transform: uppercase; color: var(--ac-muted);
+}
+.ac-colori .ac-label-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.ac-colori .ac-label-row .ac-label { margin: 0; }
+.ac-colori .ac-row { display: grid; gap: 10px; }
+.ac-colori .ac-row--3 { grid-template-columns: repeat(3, 1fr); }
+.ac-colori .ac-row--4 { grid-template-columns: repeat(4, 1fr); }
+.ac-colori .ac-field label { display: block; margin: 0 0 5px; font-size: 12px; line-height: 1.3; color: var(--ac-muted); }
+.ac-colori .ac-input { position: relative; }
+.ac-colori .ac-input input {
+  display: block; width: 100%; height: auto; margin: 0;
+  padding: 9px 30px 9px 10px;
+  font: inherit; font-size: 16px; line-height: 1.4;
+  color: var(--ac-ink); background: var(--ac-field-bg);
+  border: 1px solid var(--ac-field-border); border-radius: 8px;
+  box-shadow: none; outline: none;
+  -moz-appearance: textfield; appearance: textfield;
+}
+.ac-colori .ac-input input::-webkit-outer-spin-button,
+.ac-colori .ac-input input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.ac-colori .ac-input input::placeholder { color: var(--ac-muted); opacity: .8; }
+.ac-colori .ac-input input:focus,
+.ac-colori .ac-input input:focus-visible {
+  color: var(--ac-ink); background: var(--ac-field-bg);
+  border-color: var(--ac-brand); box-shadow: 0 0 0 3px rgba(249, 34, 115, .35);
+}
+.ac-colori .ac-copy {
+  position: absolute; top: 50%; right: 6px; transform: translateY(-50%);
+  display: flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; margin: 0; padding: 0;
+  background: transparent; border: 0; border-radius: 4px; box-shadow: none;
+  color: var(--ac-muted); cursor: pointer;
+}
+.ac-colori .ac-copy:hover { color: var(--ac-ink); background: transparent; }
+.ac-colori .ac-copy:focus-visible { outline: 2px solid var(--ac-brand); outline-offset: 1px; }
+.ac-colori .ac-copy[data-copied] { color: var(--ac-tick); }
+.ac-colori .ac-copy svg { display: block; }
+.ac-colori .ac-btn {
+  position: relative; width: 100%;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin: 0; padding: 9px 14px;
+  font: inherit; font-size: 16px; font-weight: 600; line-height: 1.4;
+  color: var(--ac-ink); background: transparent;
+  border: 1px solid var(--ac-field-border); border-radius: 999px; box-shadow: none;
+  cursor: pointer; text-transform: none; letter-spacing: 0; text-decoration: none;
+}
+.ac-colori .ac-btn:hover { color: var(--ac-ink); background: var(--ac-soft); border-color: var(--ac-ink); }
+.ac-colori .ac-btn:focus-within,
+.ac-colori .ac-btn:focus-visible { outline: 2px solid var(--ac-brand); outline-offset: 2px; }
+.ac-colori .ac-picker input {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  margin: 0; padding: 0; border: 0; opacity: 0; cursor: pointer;
+}
+.ac-colori .ac-toggle { display: flex; gap: 6px; }
+.ac-colori .ac-chip {
+  margin: 0; padding: 6px 14px;
+  font: inherit; font-size: 12px; font-weight: 600; line-height: 1.3;
+  color: var(--ac-ink); background: transparent;
+  border: 1px solid var(--ac-field-border); border-radius: 999px; box-shadow: none;
+  cursor: pointer; text-transform: none; letter-spacing: 0;
+}
+.ac-colori .ac-chip:hover { background: var(--ac-soft); color: var(--ac-ink); }
+.ac-colori .ac-chip[aria-pressed="true"] { color: var(--ac-brand-fg); background: var(--ac-brand); border-color: var(--ac-brand); }
+.ac-colori .ac-chip:focus-visible { outline: 2px solid var(--ac-brand); outline-offset: 2px; }
+.ac-colori .ac-note { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--ac-muted); }
+.ac-colori .ac-note strong { color: var(--ac-ink); font-weight: 700; }
+.ac-colori .ac-comp {
+  display: flex; gap: 20px; align-items: center; flex-wrap: wrap;
+  margin-top: 28px; padding: 18px 20px;
+  background: var(--ac-soft); border: 1px solid var(--ac-line); border-radius: var(--ac-radius);
+}
+.ac-colori .ac-comp-swatch { flex-shrink: 0; width: 64px; height: 64px; border-radius: 12px; border: 1px solid var(--ac-line); background: #000; }
+.ac-colori .ac-comp-body { flex: 1; min-width: 220px; }
+.ac-colori .ac-comp-body .ac-label { margin-bottom: 6px; }
+.ac-colori .ac-comp-list { display: flex; flex-direction: column; font-size: 16px; line-height: 1.6; }
+.ac-colori .ac-comp-list strong { font-weight: 700; color: var(--ac-ink); }
+.ac-colori .ac-disclaimer {
+  margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--ac-line);
+  font-size: 13px; line-height: 1.6; color: var(--ac-muted);
+}
+/* Colonna stretta (telefono, o colonna stretta di Elementor): tutto in verticale */
+@container (max-width: 560px) {
+  .ac-colori .ac-grid { grid-template-columns: 1fr; gap: 24px; }
+  .ac-colori .ac-side { align-items: stretch; }
+  .ac-colori .ac-swatch { width: 100%; height: 140px; }
+}
+@container (max-width: 380px) {
+  .ac-colori .ac-row--4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ac-colori .ac-swatch, .ac-colori .ac-comp-swatch { transition: background-color .15s; }
+}
+</style>
+<div class="ac-colori" id="ac-colori" data-ac-theme="dark">
+  <div class="ac-card">
+    <div class="ac-grid">
+      <div class="ac-side">
+        <div class="ac-swatch" data-ac="swatch" role="img" aria-label="Anteprima del colore"></div>
+        <label class="ac-btn ac-picker">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r="0.5" fill="currentColor"/><circle cx="17.5" cy="10.5" r="0.5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c1.4 0 2-1 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1 .8-1.9 1.9-1.9H17c2.8 0 5-2.2 5-5C22 6 17.5 2 12 2z"/></svg>
+          Color picker
+          <input type="color" data-ac="picker" aria-label="Scegli un colore con il color picker" value="#ffffff">
+        </label>
+        <button type="button" class="ac-btn" data-ac="eyedropper" hidden>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 2l7 7-8.5 8.5a3.5 3.5 0 1 1-5-5L11 2z"/><path d="M16 6l3 3"/></svg>
+          Contagocce
+        </button>
+      </div>
+      <div class="ac-fields">
+        <div class="ac-group" role="group" aria-labelledby="ac-colori-rgb">
+          <div class="ac-label" id="ac-colori-rgb">RGB</div>
+          <div class="ac-row ac-row--3">
+            <div class="ac-field"><label for="ac-colori-r">R</label><div class="ac-input"><input id="ac-colori-r" type="number" min="0" max="255" inputmode="numeric" data-ac-num="r"><button type="button" class="ac-copy" data-ac-copy="r" aria-label="Copia R"></button></div></div>
+            <div class="ac-field"><label for="ac-colori-g">G</label><div class="ac-input"><input id="ac-colori-g" type="number" min="0" max="255" inputmode="numeric" data-ac-num="g"><button type="button" class="ac-copy" data-ac-copy="g" aria-label="Copia G"></button></div></div>
+            <div class="ac-field"><label for="ac-colori-b">B</label><div class="ac-input"><input id="ac-colori-b" type="number" min="0" max="255" inputmode="numeric" data-ac-num="b"><button type="button" class="ac-copy" data-ac-copy="b" aria-label="Copia B"></button></div></div>
+          </div>
+        </div>
+        <div class="ac-group" role="group" aria-labelledby="ac-colori-cmyk">
+          <div class="ac-label" id="ac-colori-cmyk">CMYK</div>
+          <div class="ac-row ac-row--4">
+            <div class="ac-field"><label for="ac-colori-c">C</label><div class="ac-input"><input id="ac-colori-c" type="number" min="0" max="100" inputmode="numeric" data-ac-num="c"><button type="button" class="ac-copy" data-ac-copy="c" aria-label="Copia C"></button></div></div>
+            <div class="ac-field"><label for="ac-colori-m">M</label><div class="ac-input"><input id="ac-colori-m" type="number" min="0" max="100" inputmode="numeric" data-ac-num="m"><button type="button" class="ac-copy" data-ac-copy="m" aria-label="Copia M"></button></div></div>
+            <div class="ac-field"><label for="ac-colori-y">Y</label><div class="ac-input"><input id="ac-colori-y" type="number" min="0" max="100" inputmode="numeric" data-ac-num="y"><button type="button" class="ac-copy" data-ac-copy="y" aria-label="Copia Y"></button></div></div>
+            <div class="ac-field"><label for="ac-colori-k">K</label><div class="ac-input"><input id="ac-colori-k" type="number" min="0" max="100" inputmode="numeric" data-ac-num="k"><button type="button" class="ac-copy" data-ac-copy="k" aria-label="Copia K"></button></div></div>
+          </div>
+        </div>
+        <div class="ac-group">
+          <label class="ac-label" for="ac-colori-hex">HEX</label>
+          <div class="ac-input"><input id="ac-colori-hex" type="text" maxlength="7" placeholder="#000000" autocomplete="off" autocapitalize="characters" spellcheck="false" data-ac="hex"><button type="button" class="ac-copy" data-ac-copy="hex" aria-label="Copia HEX"></button></div>
+        </div>
+        <div class="ac-group">
+          <div class="ac-label-row">
+            <label class="ac-label" for="ac-colori-pantone">Pantone</label>
+            <div class="ac-toggle" role="group" aria-label="Finitura carta">
+              <button type="button" class="ac-chip" data-ac-finish="C" aria-pressed="true">Coated</button>
+              <button type="button" class="ac-chip" data-ac-finish="U" aria-pressed="false">Uncoated</button>
+            </div>
+          </div>
+          <div class="ac-input"><input id="ac-colori-pantone" type="text" list="ac-colori-pantone-list" placeholder="Cerca un Pantone..." autocomplete="off" spellcheck="false" data-ac="pantone"><button type="button" class="ac-copy" data-ac-copy="pantone" aria-label="Copia Pantone"></button></div>
+          <datalist id="ac-colori-pantone-list" data-ac="pantone-list"></datalist>
+          <p class="ac-note">Corrispondenza più vicina in libreria: <strong data-ac="pantone-name"></strong> (<span data-ac="pantone-hex"></span>)</p>
+        </div>
+      </div>
+    </div>
+    <div class="ac-comp">
+      <div class="ac-comp-swatch" data-ac="comp-swatch"></div>
+      <div class="ac-comp-body">
+        <div class="ac-label">Colore complementare</div>
+        <ul class="ac-comp-list">
+          <li>HEX: <strong data-ac="comp-hex"></strong></li>
+          <li>RGB: <strong data-ac="comp-rgb"></strong></li>
+          <li>CMYK: <strong data-ac="comp-cmyk"></strong></li>
+          <li>Pantone: <strong data-ac="comp-pc"></strong> / <strong data-ac="comp-pu"></strong></li>
+        </ul>
+      </div>
+    </div>
+    <p class="ac-disclaimer">Il Pantone mostrato è la corrispondenza approssimata più vicina in una libreria di riferimento, non una conversione ufficiale. Il CMYK è un calcolo matematico dall’RGB, senza profilo colore di stampa.</p>
+  </div>
+</div>
+<script>
+/* Convertitore colori — Creare Creatività
+   JavaScript autonomo (nessuna dipendenza). Tutto vive dentro #ac-colori. */
+(function () {
+  'use strict';
+  // ---------- Logica dei colori (pura, testata da scripts/test.mjs) ----------
+  var PANTONE_BASE = [
+    ['Pantone 199', '#D0104C'], ['Pantone 186', '#C8102E'],
+    ['Pantone Red 032', '#EF3340'], ['Pantone 1795', '#C41230'],
+    ['Pantone 165', '#FF6E1B'], ['Pantone Orange 021', '#FE5000'],
+    ['Pantone 1375', '#FF8200'], ['Pantone 1225', '#FFC72C'],
+    ['Pantone Yellow', '#FEDD00'], ['Pantone 116', '#FFCD00'],
+    ['Pantone 382', '#C4D600'], ['Pantone 375', '#84BD00'],
+    ['Pantone 355', '#00A651'], ['Pantone 348', '#00843D'],
+    ['Pantone 3415', '#00594C'], ['Pantone 3405', '#00A99D'],
+    ['Pantone 320', '#00778B'], ['Pantone 300', '#005EB8'],
+    ['Pantone 286', '#0032A0'], ['Pantone Reflex Blue', '#001489'],
+    ['Pantone 2685', '#330072'], ['Pantone 2593', '#7D3AC1'],
+    ['Pantone 2607', '#652D90'], ['Pantone 226', '#DA1884'],
+    ['Pantone 219', '#CC0066'], ['Pantone 663', '#B0A9E4'],
+    ['Pantone 468', '#D9C89E'], ['Pantone 4625', '#3D2B1F'],
+    ['Pantone 7530', '#7A6A53'], ['Pantone Cool Gray 9', '#75787B'],
+    ['Pantone Warm Gray 8', '#948B7E'], ['Pantone 425', '#54585A'],
+    ['Pantone Black', '#2D2926'], ['Pantone White', '#F2F2F2'],
+    ['Pantone 158', '#E4610F'], ['Pantone 3115', '#5CE1E6'],
+    ['Pantone 3245', '#84E8B0'], ['Pantone 5395', '#7BA4DB'],
+    ['Pantone 7683', '#3C5B90']
+  ];
+  function clamp(n) { n = Math.round(n); return isNaN(n) ? 0 : Math.max(0, Math.min(255, n)); }
+  function hex2(n) { n = n.toString(16); return n.length < 2 ? '0' + n : n; }
+  function toHex(r, g, b) { return '#' + hex2(r) + hex2(g) + hex2(b); }
+  function hexToRgb(hex) {
+    return { r: parseInt(hex.slice(1, 3), 16), g: parseInt(hex.slice(3, 5), 16), b: parseInt(hex.slice(5, 7), 16) };
+  }
+  function rgbToCmyk(r, g, b) {
+    if (r === 0 && g === 0 && b === 0) return { c: 0, m: 0, y: 0, k: 100 };
+    var rp = r / 255, gp = g / 255, bp = b / 255;
+    var k = 1 - Math.max(rp, gp, bp);
+    return {
+      c: Math.round(((1 - rp - k) / (1 - k)) * 100),
+      m: Math.round(((1 - gp - k) / (1 - k)) * 100),
+      y: Math.round(((1 - bp - k) / (1 - k)) * 100),
+      k: Math.round(k * 100)
+    };
+  }
+  function cmykToRgb(c, m, y, k) {
+    c /= 100; m /= 100; y /= 100; k /= 100;
+    return {
+      r: clamp(255 * (1 - c) * (1 - k)),
+      g: clamp(255 * (1 - m) * (1 - k)),
+      b: clamp(255 * (1 - y) * (1 - k))
+    };
+  }
+  // La carta non patinata (uncoated) assorbe di più: i colori risultano più chiari e meno saturi.
+  // Approssimazione: miscela verso un bianco carta.
+  function toUncoatedHex(hex) {
+    var c = hexToRgb(hex);
+    function mix(v, p) { return Math.round(v * 0.82 + p * 0.18); }
+    return toHex(mix(c.r, 238), mix(c.g, 231), mix(c.b, 214));
+  }
+  var LIB_C = PANTONE_BASE.map(function (p) { return { name: p[0] + ' C', hex: p[1].toUpperCase() }; });
+  var LIB_U = PANTONE_BASE.map(function (p) { return { name: p[0] + ' U', hex: toUncoatedHex(p[1]).toUpperCase() }; });
+  function closestPantone(r, g, b, lib) {
+    var best = null, bestDist = Infinity;
+    for (var i = 0; i < lib.length; i++) {
+      var c = hexToRgb(lib[i].hex);
+      var d = (r - c.r) * (r - c.r) + (g - c.g) * (g - c.g) + (b - c.b) * (b - c.b);
+      if (d < bestDist) { bestDist = d; best = lib[i]; }
+    }
+    return best;
+  }
+  // Complementare "a luce" (RGB): 255 meno ogni canale.
+  function complementary(r, g, b) {
+    var cr = 255 - r, cg = 255 - g, cb = 255 - b;
+    return {
+      r: cr, g: cg, b: cb,
+      hex: toHex(cr, cg, cb).toUpperCase(),
+      cmyk: rgbToCmyk(cr, cg, cb),
+      pantoneC: closestPantone(cr, cg, cb, LIB_C),
+      pantoneU: closestPantone(cr, cg, cb, LIB_U)
+    };
+  }
+  var core = {
+    PANTONE_BASE: PANTONE_BASE, LIB_C: LIB_C, LIB_U: LIB_U,
+    clamp: clamp, toHex: toHex, hexToRgb: hexToRgb,
+    rgbToCmyk: rgbToCmyk, cmykToRgb: cmykToRgb,
+    toUncoatedHex: toUncoatedHex, closestPantone: closestPantone, complementary: complementary
+  };
+  if (typeof module !== 'undefined' && module.exports) module.exports = core;
+  if (typeof document === 'undefined') return;
+  // ---------- Interfaccia ----------
+  var root = document.getElementById('ac-colori');
+  if (!root || root.getAttribute('data-ac-ready')) return;
+  root.setAttribute('data-ac-ready', '1');
+  function $(sel) { return root.querySelector(sel); }
+  function $$(sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); }
+  function ui(name) { return $('[data-ac="' + name + '"]'); }
+  var el = {
+    swatch: ui('swatch'), picker: ui('picker'), eye: ui('eyedropper'),
+    hex: ui('hex'), pantone: ui('pantone'), list: ui('pantone-list'),
+    pName: ui('pantone-name'), pHex: ui('pantone-hex'),
+    cSwatch: ui('comp-swatch'), cHex: ui('comp-hex'), cRgb: ui('comp-rgb'), cCmyk: ui('comp-cmyk'),
+    cPc: ui('comp-pc'), cPu: ui('comp-pu')
+  };
+  var nums = {};
+  $$('[data-ac-num]').forEach(function (i) { nums[i.getAttribute('data-ac-num')] = i; });
+  var COPY_ICON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+  var TICK_ICON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+  $$('.ac-copy').forEach(function (b) { b.innerHTML = COPY_ICON; });
+  var state = { r: 255, g: 255, b: 255, hexDraft: '#FFFFFF', finish: 'C', pantoneDraft: null };
+  var listFinish = null;
+  function setRGB(r, g, b) {
+    state.r = clamp(r); state.g = clamp(g); state.b = clamp(b);
+    state.hexDraft = toHex(state.r, state.g, state.b).toUpperCase();
+    render();
+  }
+  function lib() { return state.finish === 'U' ? LIB_U : LIB_C; }
+  function setValue(input, value) {
+    value = String(value);
+    if (input.value !== value) input.value = value;
+  }
+  function render() {
+    var r = state.r, g = state.g, b = state.b;
+    var hex = toHex(r, g, b);
+    var cmyk = rgbToCmyk(r, g, b);
+    var pantone = closestPantone(r, g, b, lib());
+    var comp = complementary(r, g, b);
+    el.swatch.style.background = hex;
+    setValue(el.picker, hex);
+    setValue(nums.r, r); setValue(nums.g, g); setValue(nums.b, b);
+    setValue(nums.c, cmyk.c); setValue(nums.m, cmyk.m); setValue(nums.y, cmyk.y); setValue(nums.k, cmyk.k);
+    setValue(el.hex, state.hexDraft);
+    setValue(el.pantone, state.pantoneDraft === null ? pantone.name : state.pantoneDraft);
+    el.pName.textContent = pantone.name;
+    el.pHex.textContent = pantone.hex;
+    if (listFinish !== state.finish) {
+      listFinish = state.finish;
+      el.list.innerHTML = '';
+      lib().forEach(function (p) {
+        var o = document.createElement('option');
+        o.value = p.name;
+        el.list.appendChild(o);
+      });
+    }
+    $$('[data-ac-finish]').forEach(function (btn) {
+      btn.setAttribute('aria-pressed', btn.getAttribute('data-ac-finish') === state.finish ? 'true' : 'false');
+    });
+    el.cSwatch.style.background = comp.hex;
+    el.cHex.textContent = comp.hex;
+    el.cRgb.textContent = comp.r + ', ' + comp.g + ', ' + comp.b;
+    el.cCmyk.textContent = comp.cmyk.c + ', ' + comp.cmyk.m + ', ' + comp.cmyk.y + ', ' + comp.cmyk.k;
+    el.cPc.textContent = comp.pantoneC.name;
+    el.cPu.textContent = comp.pantoneU.name;
+  }
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).catch(function () { fallbackCopy(text); });
+    }
+    fallbackCopy(text);
+  }
+  function fallbackCopy(text) {
+    var t = document.createElement('textarea');
+    t.value = text; t.setAttribute('readonly', ''); t.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+    document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); } catch (e) { /* niente da fare */ }
+    document.body.removeChild(t);
+  }
+  function copyValue(key) {
+    var cmyk = rgbToCmyk(state.r, state.g, state.b);
+    var map = {
+      r: state.r, g: state.g, b: state.b, c: cmyk.c, m: cmyk.m, y: cmyk.y, k: cmyk.k,
+      hex: toHex(state.r, state.g, state.b).toUpperCase(),
+      pantone: closestPantone(state.r, state.g, state.b, lib()).name
+    };
+    return String(map[key]);
+  }
+  // Campi numerici: si applicano a "change" (invio o uscita dal campo), non a ogni tasto.
+  root.addEventListener('change', function (e) {
+    var key = e.target.getAttribute && e.target.getAttribute('data-ac-num');
+    if (!key) return;
+    var v = +e.target.value;
+    var cmyk = rgbToCmyk(state.r, state.g, state.b);
+    if (key === 'r') return setRGB(v, state.g, state.b);
+    if (key === 'g') return setRGB(state.r, v, state.b);
+    if (key === 'b') return setRGB(state.r, state.g, v);
+    cmyk[key] = v;
+    var rgb = cmykToRgb(cmyk.c, cmyk.m, cmyk.y, cmyk.k);
+    setRGB(rgb.r, rgb.g, rgb.b);
+  });
+  root.addEventListener('input', function (e) {
+    var t = e.target;
+    if (t === el.picker) {
+      var c = hexToRgb(t.value);
+      return setRGB(c.r, c.g, c.b);
+    }
+    if (t === el.hex) {
+      state.hexDraft = t.value;
+      var m = t.value.match(/^#?([0-9a-f]{6})$/i);
+      if (m) { var h = hexToRgb('#' + m[1]); setRGB(h.r, h.g, h.b); }
+      return;
+    }
+    if (t === el.pantone) {
+      var q = t.value.trim().toLowerCase();
+      state.pantoneDraft = t.value;
+      var hit = lib().filter(function (p) { return p.name.toLowerCase() === q; })[0];
+      if (hit) { state.pantoneDraft = null; var p = hexToRgb(hit.hex); setRGB(p.r, p.g, p.b); }
+    }
+  });
+  el.pantone.addEventListener('focus', function () { state.pantoneDraft = ''; el.pantone.value = ''; });
+  el.pantone.addEventListener('blur', function () { state.pantoneDraft = null; render(); });
+  el.hex.addEventListener('blur', function () { state.hexDraft = toHex(state.r, state.g, state.b).toUpperCase(); render(); });
+  root.addEventListener('click', function (e) {
+    var node = e.target.closest ? e.target.closest('[data-ac-copy],[data-ac-finish]') : null;
+    if (!node || !root.contains(node)) return;
+    if (node.hasAttribute('data-ac-finish')) {
+      state.finish = node.getAttribute('data-ac-finish');
+      state.pantoneDraft = null;
+      return render();
+    }
+    copyText(copyValue(node.getAttribute('data-ac-copy')));
+    node.innerHTML = TICK_ICON;
+    node.setAttribute('data-copied', '');
+    setTimeout(function () { node.innerHTML = COPY_ICON; node.removeAttribute('data-copied'); }, 1200);
+  });
+  if (window.EyeDropper) {
+    el.eye.hidden = false;
+    el.eye.addEventListener('click', function () {
+      new window.EyeDropper().open().then(function (res) {
+        var c = hexToRgb(res.sRGBHex);
+        setRGB(c.r, c.g, c.b);
+      }).catch(function () { /* annullato dall'utente */ });
+    });
+  }
+  render();
+})();
+</script>

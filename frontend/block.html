@@ -1,0 +1,66 @@
+<div class="ac-colori" id="ac-colori" data-ac-theme="{{THEME}}">
+  <div class="ac-card">
+    <div class="ac-grid">
+      <div class="ac-side">
+        <div class="ac-swatch" data-ac="swatch" role="img" aria-label="Anteprima del colore"></div>
+        <label class="ac-btn ac-picker">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r="0.5" fill="currentColor"/><circle cx="17.5" cy="10.5" r="0.5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c1.4 0 2-1 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1 .8-1.9 1.9-1.9H17c2.8 0 5-2.2 5-5C22 6 17.5 2 12 2z"/></svg>
+          Color picker
+          <input type="color" data-ac="picker" aria-label="Scegli un colore con il color picker" value="#ffffff">
+        </label>
+        <button type="button" class="ac-btn" data-ac="eyedropper" hidden>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 2l7 7-8.5 8.5a3.5 3.5 0 1 1-5-5L11 2z"/><path d="M16 6l3 3"/></svg>
+          Contagocce
+        </button>
+      </div>
+      <div class="ac-fields">
+        <div class="ac-group" role="group" aria-labelledby="ac-colori-rgb">
+          <div class="ac-label" id="ac-colori-rgb">RGB</div>
+          <div class="ac-row ac-row--3">
+            <div class="ac-field"><label for="ac-colori-r">R</label><div class="ac-input"><input id="ac-colori-r" type="number" min="0" max="255" inputmode="numeric" data-ac-num="r"><button type="button" class="ac-copy" data-ac-copy="r" aria-label="Copia R"></button></div></div>
+            <div class="ac-field"><label for="ac-colori-g">G</label><div class="ac-input"><input id="ac-colori-g" type="number" min="0" max="255" inputmode="numeric" data-ac-num="g"><button type="button" class="ac-copy" data-ac-copy="g" aria-label="Copia G"></button></div></div>
+            <div class="ac-field"><label for="ac-colori-b">B</label><div class="ac-input"><input id="ac-colori-b" type="number" min="0" max="255" inputmode="numeric" data-ac-num="b"><button type="button" class="ac-copy" data-ac-copy="b" aria-label="Copia B"></button></div></div>
+          </div>
+        </div>
+        <div class="ac-group" role="group" aria-labelledby="ac-colori-cmyk">
+          <div class="ac-label" id="ac-colori-cmyk">CMYK</div>
+          <div class="ac-row ac-row--4">
+            <div class="ac-field"><label for="ac-colori-c">C</label><div class="ac-input"><input id="ac-colori-c" type="number" min="0" max="100" inputmode="numeric" data-ac-num="c"><button type="button" class="ac-copy" data-ac-copy="c" aria-label="Copia C"></button></div></div>
+            <div class="ac-field"><label for="ac-colori-m">M</label><div class="ac-input"><input id="ac-colori-m" type="number" min="0" max="100" inputmode="numeric" data-ac-num="m"><button type="button" class="ac-copy" data-ac-copy="m" aria-label="Copia M"></button></div></div>
+            <div class="ac-field"><label for="ac-colori-y">Y</label><div class="ac-input"><input id="ac-colori-y" type="number" min="0" max="100" inputmode="numeric" data-ac-num="y"><button type="button" class="ac-copy" data-ac-copy="y" aria-label="Copia Y"></button></div></div>
+            <div class="ac-field"><label for="ac-colori-k">K</label><div class="ac-input"><input id="ac-colori-k" type="number" min="0" max="100" inputmode="numeric" data-ac-num="k"><button type="button" class="ac-copy" data-ac-copy="k" aria-label="Copia K"></button></div></div>
+          </div>
+        </div>
+        <div class="ac-group">
+          <label class="ac-label" for="ac-colori-hex">HEX</label>
+          <div class="ac-input"><input id="ac-colori-hex" type="text" maxlength="7" placeholder="#000000" autocomplete="off" autocapitalize="characters" spellcheck="false" data-ac="hex"><button type="button" class="ac-copy" data-ac-copy="hex" aria-label="Copia HEX"></button></div>
+        </div>
+        <div class="ac-group">
+          <div class="ac-label-row">
+            <label class="ac-label" for="ac-colori-pantone">Pantone</label>
+            <div class="ac-toggle" role="group" aria-label="Finitura carta">
+              <button type="button" class="ac-chip" data-ac-finish="C" aria-pressed="true">Coated</button>
+              <button type="button" class="ac-chip" data-ac-finish="U" aria-pressed="false">Uncoated</button>
+            </div>
+          </div>
+          <div class="ac-input"><input id="ac-colori-pantone" type="text" list="ac-colori-pantone-list" placeholder="Cerca un Pantone..." autocomplete="off" spellcheck="false" data-ac="pantone"><button type="button" class="ac-copy" data-ac-copy="pantone" aria-label="Copia Pantone"></button></div>
+          <datalist id="ac-colori-pantone-list" data-ac="pantone-list"></datalist>
+          <p class="ac-note">Corrispondenza più vicina in libreria: <strong data-ac="pantone-name"></strong> (<span data-ac="pantone-hex"></span>)</p>
+        </div>
+      </div>
+    </div>
+    <div class="ac-comp">
+      <div class="ac-comp-swatch" data-ac="comp-swatch"></div>
+      <div class="ac-comp-body">
+        <div class="ac-label">Colore complementare</div>
+        <ul class="ac-comp-list">
+          <li>HEX: <strong data-ac="comp-hex"></strong></li>
+          <li>RGB: <strong data-ac="comp-rgb"></strong></li>
+          <li>CMYK: <strong data-ac="comp-cmyk"></strong></li>
+          <li>Pantone: <strong data-ac="comp-pc"></strong> / <strong data-ac="comp-pu"></strong></li>
+        </ul>
+      </div>
+    </div>
+    <p class="ac-disclaimer">Il Pantone mostrato è la corrispondenza approssimata più vicina in una libreria di riferimento, non una conversione ufficiale. Il CMYK è un calcolo matematico dall’RGB, senza profilo colore di stampa.</p>
+  </div>
+</div>

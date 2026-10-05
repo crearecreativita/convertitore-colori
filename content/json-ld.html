@@ -1,0 +1,89 @@
+<!-- Incolla in un widget "HTML" di Elementor in fondo alla pagina (o in Yoast > Schema). Le risposte coincidono con il testo visibile. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://www.crearecreativita.it/convertitore-colori/#strumento",
+      "name": "Convertitore colori RGB, CMYK, HEX e Pantone",
+      "url": "https://www.crearecreativita.it/convertitore-colori/",
+      "description": "Strumento gratuito che converte un colore tra RGB, CMYK, HEX e Pantone (corrispondenza approssimata) e calcola il colore complementare. Funziona nel browser, senza inviare dati.",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Qualsiasi (nel browser)",
+      "browserRequirements": "Richiede JavaScript",
+      "inLanguage": "it",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "Alessandro Minotto",
+        "url": "https://www.crearecreativita.it/"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "Creare Creatività",
+        "url": "https://www.crearecreativita.it/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.crearecreativita.it/convertitore-colori/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qual è la differenza tra RGB e CMYK?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "RGB è il modello dei colori a schermo: rosso, verde e blu sommano luce. CMYK è il modello della stampa: ciano, magenta, giallo e nero (K) sommano inchiostro. Per questo certi colori brillanti dello schermo, come i verdi e i blu elettrici, in stampa risultano più spenti."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Cos'è il codice HEX?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "È lo stesso colore RGB scritto in esadecimale: un cancelletto e sei caratteri, due per ogni canale. Per esempio #F92273 vuol dire rosso 249, verde 34, blu 115. È il formato che si usa nei CSS e nei siti web."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Il Pantone che vedo è quello ufficiale?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Il convertitore cerca la tinta più vicina in una libreria di riferimento di circa quaranta colori, in versione Coated (carta patinata) e Uncoated (carta non patinata, calcolata come approssimazione). Serve a farsi un'idea e a scegliere da dove partire. Per un lavoro di stampa verifica sempre il colore sulla mazzetta Pantone."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "La conversione in CMYK è precisa per la stampa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "È un calcolo matematico dai valori RGB, senza profilo colore di stampa. Va bene per avere un riferimento, ma ogni tipografia, carta e inchiostro danno un risultato un po' diverso. Prima di una tiratura chiedi sempre una prova colore."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Come viene calcolato il colore complementare?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sottraggo a 255 ciascun canale RGB. Per esempio il complementare del rosso #FF0000 è il ciano #00FFFF. È il complementare del colore-luce, quello dello schermo: sulla ruota dei colori dei pittori il rosso ha invece il verde come opposto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "I colori che inserisco vengono salvati?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Tutte le conversioni avvengono nel tuo browser: nessun colore viene caricato o salvato su un server."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>

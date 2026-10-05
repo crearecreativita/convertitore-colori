@@ -16,7 +16,7 @@ Tutto client-side: nessun backend, nessun dato inviato, nessuna dipendenza (nien
 
 ```
 colorconverter/
-├── config.json                  URL della pagina WordPress, pagina contatti, ID Analytics, tema (unico posto da modificare)
+├── config.json                  URL della pagina WordPress, pagina contatti, tema (unico posto da modificare)
 ├── frontend/                    ac-colori.css, ac-colori.js, block.html, index.html (GitHub Pages), font e immagini
 ├── wordpress/blocco-wordpress.html   blocco già pronto da incollare (CSS + HTML + JS)
 ├── content/                     testo SEO, FAQ, JSON-LD, impostazioni Yoast
@@ -62,5 +62,5 @@ python3 -m http.server 8080 -d frontend   # apri http://localhost:8080
 
 ## Note
 
-- **Google Analytics**: la pagina GitHub Pages carica gtag con l'ID in `config.json` (`gaId`). Lascia la stringa vuota per toglierlo. Nel blocco WordPress non c'è: ci pensa il sito, con il suo cookie banner.
+- **Nessun Analytics** sulla pagina GitHub Pages: le visite si misurano sul sito WordPress, che è la pagina principale (il canonical punta lì).
 - Il tema chiaro è disponibile con `"theme": "light"` in `config.json`.

@@ -13,21 +13,9 @@ const block = read('frontend/block.html').replaceAll('{{THEME}}', theme).trim();
 const css = tidy(read('frontend/ac-colori.css'));
 const js = tidy(read('frontend/ac-colori.js'));
 
-// Analytics solo nella pagina GitHub Pages: nel sito WordPress ci pensa già il sito.
-const ga = cfg.gaId
-  ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${cfg.gaId}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', '${cfg.gaId}');
-</script>`
-  : '';
-
 // 1) pagina GitHub Pages
 const tpl = read('frontend/index.template.html')
   .replaceAll('{{PAGE_URL}}', cfg.pageUrl)
-  .replace('{{GA}}', ga)
   .replace('<!--AC_BLOCK-->', block);
 writeFileSync(join(root, 'frontend/index.html'), tpl);
 

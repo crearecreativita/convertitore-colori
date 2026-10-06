@@ -41,7 +41,7 @@ node scripts/build-content.mjs  # rigenera testo pagina, JSON-LD e Yoast
 4. In fondo alla pagina aggiungi un altro widget HTML con `content/json-ld.html` (schema WebApplication + FAQPage).
 5. Yoast: frase chiave, title e meta description sono in `content/yoast.md`.
 6. Se un plugin di cache o minificazione rompe lo script, escludi la pagina dalla minificazione JS.
-7. Se il widget sta in una colonna stretta, il layout passa da solo in verticale (usa le container query, non la larghezza dello schermo).
+7. Se il widget sta in una colonna stretta, il layout va a capo da solo; sotto i 640 px di schermo è in verticale.
 
 Il testo attorno al tool è HTML normale: Google lo legge anche senza JavaScript.
 

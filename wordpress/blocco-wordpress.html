@@ -17,7 +17,6 @@
   --ac-tick: #7fc200;
   --ac-radius: 14px;
   display: block;
-  container-type: inline-size;
   max-width: 880px;
   margin: 0 auto;
   padding: 0;
@@ -47,15 +46,15 @@
   background: var(--ac-bg);
   border: 1px solid var(--ac-line);
   border-radius: 24px;
-  padding: clamp(20px, 4cqi, 40px);
+  padding: clamp(20px, 4vw, 40px);
 }
-.ac-colori .ac-grid { display: grid; grid-template-columns: 200px 1fr; gap: 32px; align-items: start; }
-.ac-colori .ac-side { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.ac-colori .ac-grid { display: flex; flex-wrap: wrap; gap: 24px 32px; align-items: flex-start; }
+.ac-colori .ac-side { flex: 0 0 200px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
 .ac-colori .ac-swatch {
   width: 200px; height: 200px; border-radius: 16px;
   background: #ffffff; border: 1px solid var(--ac-line);
 }
-.ac-colori .ac-fields { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.ac-colori .ac-fields { flex: 1 1 280px; display: flex; flex-direction: column; gap: 24px; min-width: 0; }
 .ac-colori .ac-label {
   display: block; margin: 0 0 10px; padding: 0;
   font-size: 12px; font-weight: 700; letter-spacing: .5px; line-height: 1.3;
@@ -139,13 +138,13 @@
   margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--ac-line);
   font-size: 13px; line-height: 1.6; color: var(--ac-muted);
 }
-/* Colonna stretta (telefono, o colonna stretta di Elementor): tutto in verticale */
-@container (max-width: 560px) {
-  .ac-colori .ac-grid { grid-template-columns: 1fr; gap: 24px; }
-  .ac-colori .ac-side { align-items: stretch; }
+/* Schermi stretti: tutto in verticale. Media query (non container query): in Elementor le container query sbagliano l'altezza del widget. */
+@media (max-width: 640px) {
+  .ac-colori .ac-side { flex: 1 1 100%; align-items: stretch; }
   .ac-colori .ac-swatch { width: 100%; height: 140px; }
+  .ac-colori .ac-fields { flex: 1 1 100%; }
 }
-@container (max-width: 380px) {
+@media (max-width: 400px) {
   .ac-colori .ac-row--4 { grid-template-columns: repeat(2, 1fr); }
 }
 @media (prefers-reduced-motion: no-preference) {
